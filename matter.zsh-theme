@@ -9,12 +9,8 @@
 # Prompt symbol
 COMMON_PROMPT_SYMBOL="❯"
 
-# Left Prompt
-PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status)$(common_return_status)'
-
-# Prompt with current SHA
-# PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)'
-# RPROMPT='$(common_git_status) $(git_prompt_short_sha)'
+# Prompt
+PROMPT='%B$(common_host)$(common_current_dir)$(common_bg_jobs)%b$(common_git_status)%B$(common_return_status)%b'
 
 #------------------------------------------------------------------------------
 # Host
@@ -66,7 +62,7 @@ common_git_status() {
 
     local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if [[ -n ${branch} ]]; then
-        message+="${message_color}(${branch})%f "
+        message+="${message_color}%B(${branch})%b%f "
     fi
 
     echo -n "${message}"
